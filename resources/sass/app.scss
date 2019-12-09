@@ -1,14 +1,147 @@
+@import "~@glidejs/glide/src/assets/sass/glide.core";
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/preflight";
+ */
+@tailwind preflight;
 
-// Variables
-@import 'variables';
+/**
+ * This injects any component classes registered by plugins.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/components";
+ */
+@tailwind components;
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+/**
+ * Here you would add any of your custom component classes; stuff that you'd
+ * want loaded *before* the utilities so that the utilities could still
+ * override them.
+ *
+ * Example:
+ *
+ * .btn { ... }
+ * .form-input { ... }
+ *
+ * Or if using a preprocessor or `postcss-import`:
+ *
+ * @import "components/buttons";
+ * @import "components/forms";
+ */
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/utilities";
+ */
+@tailwind utilities;
+
+/**
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
+ *
+ * Example :
+ *
+ * .bg-pattern-graph-paper { ... }
+ * .skew-45 { ... }
+ *
+ * Or if using a preprocessor or `postcss-import`:
+ *
+ * @import "utilities/background-patterns";
+ * @import "utilities/skew-transforms";
+ */
+.bg-orange {
+  background: linear-gradient(276.19deg, #FBAD05 -92.59%, #F57F20 71.27%, #D45E27 265.97%);
+}
+
+.pin-center {
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.glide__track {
+  position: relative;
+  .glide__arrows {
+    position: absolute;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.glide__arrow {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  color: #fff;
+  &.glide__arrow--left {
+    background: url("/svg/arrow-left.svg") no-repeat 50% 50%, linear-gradient(276.19deg, #FBAD05 -92.59%, #F57F20 71.27%, #D45E27 265.97%);
+  }
+  &.glide__arrow--right {
+    background: url("/svg/arrow-right.svg") no-repeat 50% 50%, linear-gradient(276.19deg, #FBAD05 -92.59%, #F57F20 71.27%, #D45E27 265.97%);
+  }
+}
+
+.glide__bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid orange;
+  margin: 5px;
+  &.glide__bullet--active {
+    background: linear-gradient(276.19deg, #FBAD05 -92.59%, #F57F20 71.27%, #D45E27 265.97%);
+  }
+}
+
+@keyframes slide-nav-down {
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+@media (min-width: 300px) {
+
+
+  .order-1 {
+    order: 1;
+  }
+
+  .order-2 {
+    order: 2
+  }
+}
+
+@media (min-width: 720px) {
+ .md\:order-1 {
+    order: 1;
+  }
+
+  .md\:order-2 {
+    order: 2
+  }
+}
+
+nav.is-floating {
+  position: fixed;
+  z-index: 100;
+  background-color: #d45e27;
+  animation: slide-nav-down .3s;
+  animation-fill-mode: forwards;
 }
